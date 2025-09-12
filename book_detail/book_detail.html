@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- FIX: rel attribute -->
+    <link rel="stylesheet" href="styles.css" />
+    <title>BookWise.io</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <!-- Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <style>
+      /* optional: keep the cover image nicely contained */
+      .book-cover {
+        max-height: 520px;
+        object-fit: contain;
+      }
+      html, body {
+        height: 100%;
+      }
+      body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      main {
+        flex: 1;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- FIX: navbar belongs in body -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+          <i class="bi bi-bookmark-fill me-2"></i> BookWise.io
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="#">Recommendations</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">My Library</a></li>
+          </ul>
+          <div class="d-flex align-items-center gap-3">
+            <a href="#" class="nav-link p-0"><i class="bi bi-search" style="font-size: 1.5rem"></i></a>
+            <div class="dropdown">
+              <a href="#" class="nav-link p-0" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-person-circle" style="font-size: 2rem"></i>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#">Personal Library</a></li>
+                <li><a class="dropdown-item" href="#">Settings</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item" href="#">Logout</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <!-- Main content -->
+      <div class="container my-4">
+        <!-- stretch children so both cards match height -->
+        <div class="row g-4 align-items-stretch">
+          <!-- Image column -->
+          <div class="col-12 col-md-5 col-lg-4">
+            <div class="card h-100">
+              <img
+                src="giver_cover.jpg"
+                alt="The Giver cover"
+                class="card-img-top img-fluid book-cover"
+              />
+            </div>
+          </div>
+
+          <!-- Details column -->
+          <div class="col-12 col-md-7 col-lg-8">
+            <h2 class="text-decoration-underline mb-3">Book Details</h2>
+            <div class="card h-100">
+              <div class="card-body d-flex flex-column">
+                <div class="d-flex justify-content-end">
+                  <div class="dropdown">
+                    <a href="#" class="nav-link p-0" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="bi bi-bookmark" style="font-size: 2rem;"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                      <li><a class="dropdown-item" href="#">Add to TBR List</a></li>
+                      <li><a class="dropdown-item" href="#">Add to Reading List</a></li>
+                      <li><a class="dropdown-item" href="#">Add to Completed</a></li>
+                      <li><a class="dropdown-item" href="#">Not interested</a></li>
+                    </ul>
+                  </div>
+                </div>
+
+                <h3 class="card-title">Title: The Giver</h3>
+                <h4 class="card-subtitle mb-2 text-muted">Author: Lois Lowry</h4>
+                <h4 class="card-subtitle mb-2 text-muted">Published: 1993</h4>
+                <h4 class="card-subtitle mb-2 text-muted">Genre: Young Adult, Dystopian</h4>
+                <h4 class="card-subtitle mb-3 text-muted">Page Count: 240</h4>
+
+                <hr />
+                <h5 class="card-title">Summary:</h5>
+                <p class="card-text border border-secondary p-2">
+                  The Giver is a 1993 American young adult dystopian novel by Lois
+                  Lowry. It is set in a society which at first appears to be
+                  utopian but is later revealed to be dystopian. The novel follows
+                  a 12-year-old boy named Jonas who is selected to be the Receiver
+                  of Memory, a prestigious position in his community. As he begins
+                  to learn about the true nature of his society, he discovers the
+                  dark secrets that lie beneath its surface.
+                </p>
+
+                <!-- push footer area down if needed -->
+                <div class="mt-auto"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer py-4 border-top">
+      <div class="container d-flex justify-content-between align-items-center">
+        <span class="logo d-flex align-items-center gap-2">
+          <i class="bi bi-bookmark-fill"></i> BookWise.io
+        </span>
+        <small>&copy; 2025 AI Book Recommendations. All rights reserved.</small>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
