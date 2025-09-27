@@ -14,36 +14,45 @@
 <body>
 
   <!-- Header / Navbar -->
-  <nav class="navbar navbar-expand-lg bg-white">
-    <div class="container-fluid">
-      <a class="navbar-brand d-flex align-items-center gap-2" href="#">
-        <i class="bi bi-bookmark-fill"></i><span class="logo-mark">BookWise.io</span>
-      </a>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+          <i class="bi bi-bookmark-fill me-2"></i> BookWise.io
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topnav" aria-controls="topnav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div id="topnav" class="collapse navbar-collapse">
-        <ul class="navbar-nav ms-3 me-auto align-items-lg-center">
-          <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-          <li class="nav-item d-none d-lg-block">
-            <form class="ms-2 nav-search-form" role="search">
-              <div class="input-group">
-                <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
-                <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-              </div>
-            </form>
-          </li>
-          <li class="nav-item"><a class="nav-link" href="#">Recommendations</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">My Library</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Ask the Librarian</a></li>
-        </ul>
-
-        <a href="#" class="nav-link p-0 ms-lg-2"><i class="bi bi-person-circle fs-3"></i></a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="GetRecommendationsAi.html">Recommendations</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">My Library</a></li>
+          </ul>
+          <div class="d-flex align-items-center gap-3">
+            <a href="book_search.html" class="nav-link p-0"><i class="bi bi-search" style="font-size: 1.5rem"></i></a>
+            <div class="dropdown">
+              <a href="#" class="nav-link p-0" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-person-circle" style="font-size: 2rem"></i>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#">Personal Library</a></li>
+                <li><a class="dropdown-item" href="user_settings.html">Settings</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item" href="log_in.html">Logout</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
 
   <main class="container-fluid py-4">
     <div class="row g-4">
