@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Recommendations</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"/>
+        <style>
+            .message-bubble {
+                max-width: 75%;
+                padding: 10px 15px;
+                border-radius: 20px;
+                margin-bottom: 10px;
+            }
+            .message-sent {
+                background-color: #0d6efd;
+                color: white;
+                margin-left: auto;
+                border-bottom-right-radius: 0;
+            }
+            .message-received {
+                background-color: #e9ecef;
+                color: black;
+                margin-right: auto;
+                border-bottom-left-radius: 0;
+            }
+
+            .book {
+                max-height: 9em;
+                margin-bottom: 1em;
+            }
+
+            .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid #222;
+            background: #fff;
+            padding: 0.5rem 2rem;
+            font-weight: bold;
+            }
+
+            .header .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            font-style: italic;
+            color: inherit;
+            text-decoration: none;
+            }
+            .header .logo .bi-bookmark-fill {
+            font-size: 1.8rem;
+            margin-right: 8px;
+            }
+
+            .header .nav {
+            display: flex;
+            gap: 2rem;
+            margin: 0 auto;
+            }
+
+            .header .nav a {
+            font-style: italic;
+            font-size: 1.1rem;
+            color: #000;
+            text-decoration: none;
+            }
+
+            .header .icons {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            }
+
+            .footer {
+            border-top: 2px solid #222;
+            background: #fff;
+            text-align: center;
+            padding: 1rem 0 0.5rem 0;
+            margin-top: 3rem;
+            }
+
+            .footer .logo {
+            display: inline-flex;
+            align-items: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+            }
+
+            .footer .logo .bi-bookmark-fill {
+            font-size: 1.2rem;
+            margin-right: 6px;
+            }
+
+            .footer small {
+            color: #444;
+            display: block;
+            margin-top: 0.25rem;
+            }
+
+            .dropdown {
+            position: relative;
+            display: inline-block;
+            }
+
+            .profile-icon {
+            font-size: 2rem;
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+            }
+
+            .dropdown-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 120%;
+            background: #888;
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 1rem 1.5rem 1rem 1.5rem;
+            min-width: 180px;
+            z-index: 100;
+            }
+
+            .dropdown-menu a {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5rem 0;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            background: none;
+            transition: background 0.2s;
+            }
+
+            .dropdown-menu a:last-child {
+            margin-bottom: 0;
+            }
+
+            .dropdown-menu a:hover {
+            background: #666;
+            }
+
+            .dropdown:hover .dropdown-menu,
+            .dropdown:focus-within .dropdown-menu {
+            display: block;
+            }
+
+            html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            }
+
+            body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            }
+
+            .main-content {
+            flex: 1;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Header/Navbar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom">
+      <div class="container-fluid">
+        <!-- Logo and Brand -->
+        <a class="navbar-brand d-flex align-items-center" href="#">
+          <i class="bi bi-bookmark-fill me-2"></i> BookWise.io
+        </a>
+        <!-- Hamburger button for mobile -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Navbar links and icons -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <!-- Centered nav links -->
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Recommendations</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">My Library</a>
+            </li>
+          </ul>
+          <!-- Right-aligned icons -->
+          <div class="d-flex align-items-center gap-3">
+            <a href="#" class="nav-link p-0"
+              ><i class="bi bi-search" style="font-size: 1.5rem"></i
+            ></a>
+            <div class="dropdown">
+              <a
+                href="#"
+                class="nav-link p-0"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <i class="bi bi-person-circle" style="font-size: 2rem"></i>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#">Personal Library</a></li>
+                <li><a class="dropdown-item" href="#">Settings</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item" href="#">Logout</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- End of Header/Navbar -->
+        <div class="container">
+            <div>
+            <!-- Header -->
+            <h1>Get Recommendations AI</h1>
+            </div>
+
+            <div class="row">
+            <div class="col-6">
+                <div style="background-color: lightgray; height: 600px; width: auto;" class="rounded card">
+                <!-- AI Side-->
+                 <div class="card-body">
+                    <div class="message-bubble message-received">
+                        Hi there! How can I help you today?
+                    </div>
+                 </div>
+                 <div class="card-footer">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Recommend me a book that..." aria-label="User question" aria-describedby="button-send">
+                        <button class="btn btn-primary" type="button" id="button-send">Send</button>
+                    </div>
+
+                 </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div style="background-color: lightgray; height: 600px; width: auto;" class="rounded">
+                <!-- Book API Side-->
+                    <div class="container overflow-hidden">
+                    <!-- Header -->
+                        <div class="row py-3 justify-content-center text-align-center">
+                            <h3>Book Recommendation List</h3>
+                        </div>
+
+                        <!-- Book 1 -->
+                        <div class="row align-items-start g-2 my-1 border-bottom border-top">
+                            <div class="col-4">
+                            <img src="https://s26162.pcdn.co/wp-content/uploads/2018/02/gatsby-original2.jpg"
+                                class="img-fluid rounded book" alt="Book Cover">
+                            </div>
+                            <div class="col-8 text-truncate">
+                                <h6 class="mb-1">Book Title</h6>
+                                <p class="mb-1 small">Author: John Doe</p>
+                                <p class="mb-1 small">Genre: Fiction</p>
+                                <p class="mb-0 small text-truncate">
+                                    Description: This is a brief description of the book. It provides an overview of the plot and main themes.
+                                </p>
+                                <button class="btn btn-link p-0 small" type="button" data-bs-toggle="collapse" data-bs-target="#bookDesc1" aria-expanded="false" aria-controls="bookDesc1">
+                                    Read more
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Book 2 -->
+                        <div class="row align-items-start g-2 my-1 border-bottom">
+                            <div class="col-4">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjOvUem2IWhkdr1CkfWsr_tWgwGo9AYgamfQ&s"
+                                class="img-fluid rounded book" alt="Book Cover">
+                            </div>
+                            <div class="col-8 text-truncate">
+                                <h6 class="mb-1">Book Title</h6>
+                                <p class="mb-1 small">Author: John Doe</p>
+                                <p class="mb-1 small">Genre: Fiction</p>
+                                <p class="mb-0 small text-truncate">
+                                    Description: This is a brief description of the book. It provides an overview of the plot and main themes.
+                                </p>
+                                <button class="btn btn-link p-0 small" type="button" data-bs-toggle="collapse" data-bs-target="#bookDesc1" aria-expanded="false" aria-controls="bookDesc1">
+                                    Read more
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Book 3 -->
+                        <div class="row align-items-start g-2 my-1 border-bottom">
+                            <div class="col-4">
+                            <img src="https://miro.medium.com/1*PPu1M9FkK1pJeT9cWiiPxw.jpeg"
+                                class="img-fluid rounded book" alt="Book Cover">
+                            </div>
+                            <div class="col-8 text-truncate">
+                                <h6 class="mb-1">Book Title</h6>
+                                <p class="mb-1 small">Author: John Doe</p>
+                                <p class="mb-1 small">Genre: Fiction</p>
+                                <p class="mb-0 small text-truncate">
+                                    Description: This is a brief description of the book. It provides an overview of the plot and main themes.
+                                </p>
+                                <button class="btn btn-link p-0 small" type="button" data-bs-toggle="collapse" data-bs-target="#bookDesc1" aria-expanded="false" aria-controls="bookDesc1">
+                                    Read more
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+    <footer class="footer">
+      <span class="logo">
+        <i class="bi bi-bookmark-fill"></i>
+        BookWise.io
+      </span>
+      <small>&copy; 2025 AI Book Recommendations. All rights reserved.</small>
+    </footer>
+    <!-- End of Footer -->
+    </body>
+
+</html>
