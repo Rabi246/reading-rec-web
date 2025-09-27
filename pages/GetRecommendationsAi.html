@@ -96,6 +96,7 @@
       </h1>
       <form style="width: 100%; max-width: 600px">
         <textarea
+          id="recInput"
           placeholder="Enter what you feel like reading."
           style="
             width: 100%;
@@ -109,6 +110,18 @@
             box-sizing: border-box;
           "
         ></textarea>
+
+        <!-- Button below the textarea that navigates to Recommendations.html -->
+        <div style="margin-top: 1rem; text-align: right;">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            onclick="location.href='Recommendations.html'"
+            aria-label="Get recommendations"
+          >
+            Get Recommendations
+          </button>
+        </div>
       </form>
     </main>
 
