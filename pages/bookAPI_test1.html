@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Google Books API Test</title>
+  <meta charset="UTF-8">
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    input { padding: 8px; width: 300px; }
+    button { padding: 8px 12px; }
+    .book {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-top: 10px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    img { height: 120px; }
+  </style>
+</head>
+<body>
+
+<h2>Google Books API Test</h2>
+
+<input id="search" type="text" placeholder="Search for a book...">
+<button onclick="searchBook()">Search</button>
+
+<div id="results"></div>
+
+<script>
+  function searchBook() {
+    const query = document.getElementById("search").value;
+    const url = `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(query)}`;
+
+    fetch(url)
+      .then(res => res.json())
+      .then(data => {
+        const results = document.getElementById("results");
+        results.innerHTML = ""; // clear previous
+
+        if (!data.items) {
+          results.innerHTML = "<p>No results found.</p>";
+          return;
+        }
+
+        data.items.forEach(book => {
+          const info = book.volumeInfo;
+          const title = info.title || "No Title";
+          const authors = info.authors ? info.authors.join(", ") : "Unknown Author";
+          const thumbnail = info.imageLinks?.thumbnail || "";
+
+          results.innerHTML += `
+            <div class="book">
+              <img src="${thumbnail}" alt="Cover"/>
+              <div>
+                <strong>${title}</strong><br>
+                <em>${authors}</em>
+              </div>
+            </div>
+          `;
+        });
+      })
+      .catch(err => {
+        console.error(err);
+        document.getElementById("results").innerHTML = "<p>Error fetching data</p>";
+      });
+  }
+</script>
+
+</body>
+</html>
